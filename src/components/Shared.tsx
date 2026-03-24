@@ -79,7 +79,9 @@ export const AmazonLogo = () => (
 
 export const SocialIcon = ({ children, href }: { children: React.ReactNode, href: string }) => (
   <a 
-    href={href} 
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-brand-red hover:bg-white/10 transition-all duration-300"
   >
     {children}
@@ -310,10 +312,9 @@ export const Footer = () => {
         </div>
 
         <div className="flex gap-4">
-          <SocialIcon href="#"><FacebookLogo /></SocialIcon>
-          <SocialIcon href="#"><LinkedInLogo className="w-5 h-5" /></SocialIcon>
-          <SocialIcon href="#"><YouTubeLogo /></SocialIcon>
-          <SocialIcon href="#"><InstagramLogo /></SocialIcon>
+          <SocialIcon href="https://www.instagram.com/9redigilab"><InstagramLogo /></SocialIcon>
+          <SocialIcon href="https://www.facebook.com/9redigilab/"><FacebookLogo /></SocialIcon>
+          <SocialIcon href="https://www.linkedin.com/company/9redigilab"><LinkedInLogo className="w-5 h-5" /></SocialIcon>
         </div>
 
         <div className="flex gap-6">

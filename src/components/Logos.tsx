@@ -67,8 +67,10 @@ export const AmazonLogo = () => (
 );
 
 export const SocialIcon = ({ children, href }: { children: React.ReactNode, href: string }) => (
-  <a 
-    href={href} 
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-brand-red hover:bg-white/10 transition-all duration-300"
   >
     {children}

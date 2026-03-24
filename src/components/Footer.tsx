@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SocialIcon, LinkedInLogo, FacebookLogo, InstagramLogo, YouTubeLogo } from './Logos';
+import { SocialIcon, LinkedInLogo, FacebookLogo, InstagramLogo } from './Logos';
 import logoImg from '../../assets/ninered-digilab-white-logo.png';
 
 export const Footer = () => {
@@ -20,10 +20,9 @@ export const Footer = () => {
         </div>
 
         <div className="flex gap-3">
-          <SocialIcon href="#"><LinkedInLogo className="w-5 h-5" /></SocialIcon>
-          <SocialIcon href="#"><FacebookLogo /></SocialIcon>
-          <SocialIcon href="#"><InstagramLogo /></SocialIcon>
-          <SocialIcon href="#"><YouTubeLogo /></SocialIcon>
+          <SocialIcon href="https://www.instagram.com/9redigilab"><InstagramLogo /></SocialIcon>
+          <SocialIcon href="https://www.facebook.com/9redigilab/"><FacebookLogo /></SocialIcon>
+          <SocialIcon href="https://www.linkedin.com/company/9redigilab"><LinkedInLogo className="w-5 h-5" /></SocialIcon>
         </div>
       </div>
     </footer>
