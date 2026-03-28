@@ -6,13 +6,26 @@ import { Mail, Globe, Check, ArrowRight } from 'lucide-react';
 export const Contact = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('submitting');
-    setTimeout(() => {
-      setFormState('success');
-      setTimeout(() => setFormState('idle'), 3000);
-    }, 1500);
+    const form = e.target as HTMLFormElement;
+    try {
+      const res = await fetch('https://formspree.io/f/mdapkwdj', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setFormState('success');
+        form.reset();
+        setTimeout(() => setFormState('idle'), 3000);
+      } else {
+        setFormState('idle');
+      }
+    } catch {
+      setFormState('idle');
+    }
   };
 
   return (
@@ -56,28 +69,28 @@ export const Contact = () => {
                 <div className="grid grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold pl-1">First Name</label>
-                    <input required type="text" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="John" />
+                    <input required type="text" name="firstName" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="John" />
                   </div>
                   <div className="space-y-1.5">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold pl-1">Last Name</label>
-                    <input required type="text" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="Doe" />
+                    <input required type="text" name="lastName" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="Doe" />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold pl-1">Business Email</label>
-                  <input required type="email" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="john@company.com" />
+                  <input required type="email" name="email" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="john@company.com" />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold pl-1">Company Website</label>
-                  <input required type="text" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="www.company.com" />
+                  <input required type="text" name="website" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300" placeholder="www.company.com" />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold pl-1">Monthly Ad Budget</label>
                   <div className="relative">
-                    <select className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl appearance-none transition-all duration-300">
+                    <select name="budget" className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl appearance-none transition-all duration-300">
                       <option className="bg-[#111] text-white/50" value="" disabled selected>Select your budget range</option>
                       <option className="bg-[#111]">$2,000 - $5,000</option>
                       <option className="bg-[#111]">$5,000 - $10,000</option>
@@ -96,6 +109,7 @@ export const Contact = () => {
                   <textarea
                     rows={3}
                     placeholder="Tell us about your goals, challenges, and timeline..."
+                    name="message"
                     className="w-full bg-white/[0.03] border border-white/10 focus:border-brand-red/50 focus:bg-white/[0.06] outline-none text-white px-4 py-3.5 text-sm rounded-xl transition-all duration-300 placeholder:text-white/20 resize-none"
                   />
                 </div>
