@@ -11,7 +11,7 @@ export const Contact = () => {
     setFormState('submitting');
     const form = e.target as HTMLFormElement;
     try {
-      const response = await fetch('https://formspree.io/f/mdapkwdj', {
+      const response = await fetch('https://formspree.io/f/mreoqeqp', {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
