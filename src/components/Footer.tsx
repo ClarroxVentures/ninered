@@ -25,6 +25,9 @@ export const Footer = () => {
           <SocialIcon href="https://www.linkedin.com/company/9redigilab"><LinkedInLogo className="w-5 h-5" /></SocialIcon>
         </div>
       </div>
+      <div className="text-center mt-4 pb-2">
+        <p className="text-white/20 text-[10px]">Powered by <a href="https://clarroxweb.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white/40 transition-colors">ClarroxWeb</a></p>
+      </div>
     </footer>
   );
 };
